@@ -35,7 +35,7 @@
     ·
     <a href="Programas Simples">Programas Simples</a>
     ·
-    <a href="Projetos Android">Projetos Android</a>
+    <a href="Projetos">Projetos</a>
 </p>
 <!-- -->
 
