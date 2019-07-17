@@ -111,7 +111,7 @@ Criando e executando um programa simples em Java pelo CMD
 
 2. Após ter baixado e configurado o compilador, já será capaz de criar e executar programas Java no Windows.
 
-- Para compilar programas *".kt"* e executá-los no terminal/cmd:
+- Para compilar programas *".java"* e executá-los no terminal/cmd:
   - Abrir pasta onde se localiza o arquivo main (principal) *.java*: <br/>
      `> cd "pasta do programa"`
   - Compilar o programa: <br/>
