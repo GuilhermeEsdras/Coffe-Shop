@@ -149,7 +149,7 @@ public class HelloWorld {
 ```
 
 Saída: <br/>
-`> Hello Gui! =)`
+`> Hello, Gui! =)`
 <!-- -->
 
 <!-- Links-->
