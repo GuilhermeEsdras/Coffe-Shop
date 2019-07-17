@@ -117,7 +117,7 @@ Criando e executando um programa simples em Java pelo CMD
   - Compilar o programa: <br/>
      `> javac "nome do programa".java`
   - Para executar: <br/>
-     `> java -jar "nome de saída".jar`
+     `> java "nome do programa"`
   
   - Exemplo: <br/>
      `> cd "C:\Users\Guilherme\Documentos\Meus Programas\Java\Programa Hello World\main" // Para ir até a pasta do arquivo main .java` <br/>
