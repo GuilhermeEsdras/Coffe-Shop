@@ -14,7 +14,7 @@
 
 <!-- Logo -->
 <p align="center">
-    <img align="center" src="https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png" alt="Java Logo" width="300">
+    <img align="center" src="Imagens/Java_logo_icon.png" alt="Java Logo" width="300">
 </p>
 <!-- -->
 
@@ -41,7 +41,7 @@
 
 <!-- Language Preview-->
 <p align="center">
-    <img align="center" src="https://miro.medium.com/max/1838/1*3OWWk9BUargTyvFGQpBsOA.png" alt="Java Preview" width="500">
+    <img align="center" src="Imagens/java-code-example.png" alt="Java Preview" width="500">
 </p>
 <!-- -->
 
@@ -49,21 +49,22 @@
 
 <!-- Table of Contents -->
 ## Glossário
-- [Coffe Shop](#Coffe-Shop)
-  - [Glossário](#Gloss%C3%A1rio)
-  - [Objetivo](#Objetivo)
-  - [Material Utilizado](#Material-Utilizado)
-    - [Sistema Operacional](#Sistema-Operacional)
-    - [Compilador](#Compilador)
-    - [IDE](#IDE)
-  - [Programando em Java](#Programando-em-Java)
-    - [Pré-Requisitos](#Pr%C3%A9-Requisitos)
-    - [Executando .java pelo CMD](#Executando-java-pelo-CMD)
-    - [Criando e Rodando Projetos com Maven](#Criando-e-Rodando-Projetos-com-Maven)
-    - [Exemplo de Hello World](#Exemplo-de-Hello-World)
-  - [Links Úteis](#Links-%C3%9Ateis)
-  - [Autor](#Autor)
-  - [Licença](#Licen%C3%A7a)
+- [Coffe Shop](#coffe-shop)
+  - [Glossário](#gloss%c3%a1rio)
+  - [Objetivo](#objetivo)
+  - [Material Utilizado](#material-utilizado)
+    - [Sistema Operacional](#sistema-operacional)
+    - [Compilador](#compilador)
+    - [IDE](#ide)
+  - [Programando em Java](#programando-em-java)
+    - [Pré-Requisitos](#pr%c3%a9-requisitos)
+    - [Executando .java pelo CMD](#executando-java-pelo-cmd)
+    - [Criando e Rodando Projetos com Maven](#criando-e-rodando-projetos-com-maven)
+    - [Criando Bateria de Testes com intelliJ](#criando-bateria-de-testes-com-intellij)
+    - [Exemplo de Hello World](#exemplo-de-hello-world)
+  - [Links Úteis](#links-%c3%9ateis)
+  - [Autor](#autor)
+  - [Licença](#licen%c3%a7a)
 <!-- -->
 
 <!-- Objetivo -->
@@ -125,7 +126,76 @@ Criando e executando um programa simples em Java pelo CMD
      `> java HelloWorld // Para executar este programa`
 
 ### Criando e Rodando Projetos com Maven
-> Em breve...
+
+1. Criar a arquitetura de diretórias usando Maven CLI: <br/>
+   `> mvn archetype:generate -DgroupId="nome do package" -DartifactId="nome do app"² -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false` <br/>
+    - **"nome do package"** - Aqui fica o nome do diretório dos arquivos .java do projeto. (Exemplo: `br.com.br`)
+    - **"nome do app"** - Aqui fica o nome da classe principal (main) e também da pasta principal do projeto (onde ficará o arquivo main). (Exemplo: *Conta*)
+    - Exemplo de arquitetura de diretórios: <br/>
+    `C:\Users\Guilherme\"nome do app"\src\main\java\"nome do package"\"nome do app".java` <- Classes principais <br/>
+    `C:\Users\Guilherme\"nome do app"\src\test\java\"nome do package"\ContaTeste.java` <- Classes de Testes (Bateria de Testes)
+
+2. Renomear arquivos App e AppTest para os nomes desejados usando Refactor / Do Refactor *(no intelliJ IDEA IDE)*
+   
+3. Alterar o *pom.xml*
+   1. Trocar a versão: <br/>
+        de: <br/>
+        ```
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        ```
+        para: <br/>
+        ```
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        ```
+    1. Adicionar o plugin gerador de jar do maven para poder compilar: <br/>
+        Para isso, alterar as linhas 51 à 54 <br/>
+        de: <br/>
+        ```
+        <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.0.2</version>
+        </plugin>
+        ```
+        para: <br/>
+        ```
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.0.2</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <mainClass>br.com.bb.MainClass</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+        ```
+        Onde "**br.com.bb.MainClass**" é o caminho (separado por .) da pasta onde se localiza o arquivo principal (main) do programa.
+
+4. Para compilar o programa:
+   - Usando plugin/extensão do Maven no intelliJ: <br/> Maven -> Compile
+   - ou usando o terminal: <br/> `> mvn compile`
+5. Para gerar o *.jar*:
+   - Usando plugin/extensão do Maven no intelliJ: <br/> Maven -> Package
+   - ou usando o terminal: <br/> `> mvn package`
+6. Forma mais fácil e rápida para compilar e gerar o jar de uma só vez usando o terminal:
+   - `> mvn compile package`
+7. Para rodar o programa, executar o jar gerado na pasta *target*:
+   - `> java -jar target/"app"-1.0-SNAPSHOT.jar` <br/>
+    Onde **"app"** é o nome do arquivo/classe principal do programa.
+
+### Criando Bateria de Testes com intelliJ
+
+1. Criar os métodos vazios apenas definindo os parâmetros
+2. Criar a bateria de testes no **"AppTest"** *(renomear)* (localizado na pasta test) de determinado método:
+   - Code -> Generate... -> Test... <br/>
+     ou <br/>
+   - Botão direito -> Generate... -> Test...
+3. Ir rodando testes primeiro, alterando e modificando os métodos depois.
 
 ### Exemplo de Hello World
 ``` Java
@@ -156,6 +226,7 @@ Saída: <br/>
 ## Links Úteis
 - [Java™ SE (Standard Edition) Development Kit (JDK™) - Java JDK](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Java Download](https://www.java.com/pt_BR/download/)
+- [Visual Paradigm - Criação de Diagramas UML online](online.visual-paradigm.com/)
 <!-- -->
 
 <!-- Autor/Contato -->
